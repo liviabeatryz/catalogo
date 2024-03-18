@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+</head>
+<body>
+    <script>
+        
+        var catalogoProd = [];
+
+    function adicionarProd() {
+        var nome = prompt("Qual produto você quer adicionar?");
+        var preco = parseFloat(prompt("Qual o preço do produto?"));
+        var quantidade= parseInt (prompt("Adicione a quantidade do produto:"));
+        var descricao = prompt("Adicione a descrição do produto:");
+
+    prodNovo = {
+        nome: nome,
+        preco: preco,
+        quantidade: quantidade,
+        descricao: descricao
+    };
+
+    catalogoProd.push(prodNovo);
+        alert("O produto foi adicionado!");
+}
+
+    function visualizarProd() {
+        if (catalogoProd.length === 0) {
+            alert("Este catálogo se encontra vazio.");
+        } else {
+        var listaProd = "Lista de Produtos:\n";
+        catalogoProd.forEach(produto => {
+            listaProd += `Nome: ${produto.nome} Preço: ${produto.preco} Quantidade: ${produto.quantidade} Descrição: ${produto.descricao}\n`;
+        });
+            alert(listaProd);
+    }
+}
+
+    function buscarProd() {
+        var nome = prompt("Insira o nome do produto que você gostaria buscar:");
+        var produto = catalogoProd.find(produto => produto.nome === nome);
+
+        if (produto) {
+            alert(`- Nome: ${produto.nome}\n- Preço: ${produto.preco}\n- Quantidade: ${produto.quantidade}\n- Descrição: ${produto.descricao}`);
+        } else {
+            alert("O produto não foi encontrado.");
+    }
+
+    
+}
+
+    function atualizarProd() {
+        const nome = prompt("Digite o nome do produto para atualizar");
+        const produto = catalogoProd.find(produto => produto.nome === nome);
+
+        if (produto) {
+            produto.nome = prompt("Digite o novo produto");
+            produto.preco = parseFloat(prompt("Digite o novo preço"));
+            produto.quantidade = prompt("Digite a nova quantidade");
+            produto.descricao = prompt("Digite a nova descrição");
+                alert("Produto atualizado");
+            } else {
+                alert("Produto não encontrado");
+            }   
+
+
+    }
+
+    function excluirProd() {
+        var nome = prompt("Insira o nome do produto que deseja excluir:");
+        var produto = catalogoProd.find(produto => produto.nome === nome);
+
+        if (produto !== -1) {
+            catalogoProd.splice(produto, 1);
+            alert("O produto foi excluído.");
+        } else {
+            alert("O produto foi não encontrado");
+    }
+}
+
+    
+var opcaoCatalogo = 0;
+    while (opcaoCatalogo !== 6){
+        opcaoCatalogo = parseInt(prompt("Escolha uma opção:\n1 - Buscar Produto\n2 - Visualizar Produto\n3 - Atualizar Produto\n4 - Adicionar Produto\n5 - Excluir Produto\n6 - Sair"));
+
+    if (opcaoCatalogo === 1) {
+        buscarProd();
+    } else if (opcaoCatalogo === 2){
+        visualizarProd();
+    } else if (opcaoCatalogo === 3){
+        atualizarProd();
+    } else if (opcaoCatalogo === 4){
+        adicionarProd();
+    } else if (opcaoCatalogo === 5){
+        excluirProd();
+    } else if (opcaoCatalogo === 6){
+        alert('Encerrando...');
+    } else{
+        alert ('Tente novamente');
+    }
+}
+
+    </script>
+</body>
+</html>
